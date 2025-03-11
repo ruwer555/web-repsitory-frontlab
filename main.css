@@ -1,0 +1,31 @@
+body {
+    background-color: lightblue;
+    color: maroon;
+    font-family: Arial;
+    margin: 0px;
+}
+header {
+    background-color: lightgreen;
+    color: darkblue;
+    font-family: Arial;
+    margin: 0px;
+
+
+}
+main {
+    background-color: lightgoldenrodyellow;
+    color: darkblue;
+    font-family: italic;
+    margin: 0px;
+}
+footer {
+    background-color: lightgreen;
+    color: darkblue;
+    font-family: Arial;
+    margin: 0px;
+}
+a {
+    color: maroon;
+    text-decoration: none;
+}
+
