@@ -14,13 +14,19 @@ main {
     background-color: lightgoldenrodyellow;
     color: darkblue;
     font-family: italic;
-    margin: 0px;
+    margin: 0px 0px 36px;
 }
+
 footer {
     background-color: lightgreen;
     color: darkblue;
     font-family: Arial;
-    margin: 0px;
+    text-align: right;
+    padding: 0px 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 a {
     color: maroon;
