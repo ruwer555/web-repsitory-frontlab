@@ -10,6 +10,37 @@
     <style>
         div { 
             width:300px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            background-color: white;
+            border: 1px dotted darkgreen;
+            margin: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        .postion-relative {
+            position: relative;
+            left: 150px;
+            top: -130px;
+            z-index: 1;
+
+        }
+        .postion-relative:hover {
+            top: -130px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .postion-absolute:hover {
+            width: 350px;
+            height: 70px;
+            background-color: red;
+            box-shadow: 3px 3px 3px black;
+        }
+        .postion-absolute {
+            position: absolute;
+            right: 3px;
         }
     </style>
 </head>
@@ -20,10 +51,10 @@
     <main>
         <div>static</div>
         <div>static</div>
+        <div class="postion-relative">relative</div>
         <div>static</div>
         <div>static</div>
-        <div>static</div>
-        <div>static</div>
+        <div class="postion-absolute">absolute</div>
         <div>static</div>
         <div>static</div>
         <div>static</div>
