@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Копылов Владимир Вячеславович. Прогресс</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+        <style>
+            .title {
+                color: rgb(8, 39, 4);
+                font-size: 20px;
+                font-family: Verdana;
+                font-weight: 800;
+            }
+
+            .shkala {
+                background-color: lightgreen;
+                border-radius: 10px;
+                height: 20px;
+                margin: 30px;
+                overflow: hidden;
+            }
+
+            .Whereprog {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 400px;
+            }
+
+            .dis {
+                background: white;
+                padding: 50px;
+                border-radius: 15px;
+                box-shadow: 0px 16px 16px gray;
+                text-align: center;
+                width: 400px;
+            }
+
+            .zalivka {
+                background-color: rgb(8, 75, 75);
+                height: 100%;
+                width: 0px;
+                transition: 5s linear;
+            }
+
+            .Knopka {
+                background-color: rgb(8, 75, 75);
+                color: white;
+                padding: 14px 32px;
+                border: none;
+                border-radius: 30px;
+                font-family:Verdana;
+                font-size: 20px;
+                font-weight: 500;
+                cursor: pointer;
+                box-shadow: 0 16px 16px gray;
+                transition: 0.2s;
+            }
+
+            .Knopka:hover {
+                box-shadow: 0 16px 16px black;
+            }
+
+            .Knopka:active {
+                box-shadow: none;
+            }
+
+            .dis:active .zalivka {
+                width: 100%;
+                transition: width 5s linear;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+            <hr>
+        </header>
+
+        <main>
+            <div class="Whereprog">
+                <div class="dis">
+                    <div class="title">Степень прогресса</div>
+                    <div class="shkala">
+                        <div class="zalivka"></div>
+                    </div>
+                    <div class="Knopka">Нажмите и удерживайте</div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Копылов Владимир , ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
