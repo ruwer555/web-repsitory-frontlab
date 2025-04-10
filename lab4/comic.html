@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Комикс</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .dis {
+            position: relative;
+            display: inline-block;
+        }
+        .cloud {
+            position: absolute;
+            border: 1px gray;
+            padding: 25px;
+            margin: 20px;
+            opacity: 0;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 5px 5px 10px gray;
+            transition: 1s 1s;
+        }
+
+        .cloud1 {
+            right: 500px;
+            bottom: 285px;
+            width: 30px;
+            height: 10px;
+        }
+        .dis:hover .cloud1 {
+            opacity: 1;
+            transition: 1s 0.2s;
+        }
+
+        .cloud2 {
+            right: 415px;
+            bottom: 330px;
+            width: 50px;
+            height: 15px;
+        }
+
+        .dis:hover .cloud2 {
+            opacity: 1;
+            transition: 1s 0.4s;
+        }
+        
+        .cloud3 {
+            right: 300px;
+            bottom: 390px;
+            width: 100px;
+            height: 30px;
+        }
+
+        .dis:hover .cloud3 {
+            opacity: 1;
+            transition: 1s 0.6s;
+        }
+
+        .cloud4 {
+            right: 40px;
+            bottom: 440px;
+            width: auto;
+            height: auto;
+            text-align: center;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        .dis:hover .cloud4 {
+            opacity: 1;
+            transition: 1s 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+    </header>
+
+    <main>
+        <div>
+            <div class="dis">
+                <img src="Stethem.jpg" width="100%">
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+                <div class="cloud cloud3"></div>
+                <div class="cloud cloud4">
+                    <p>
+                        Сильный не тот, кто сильный,
+                    </p>
+                    <p>
+                        сильный тот, кто не слабый.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+
+</body>
+
+</html>

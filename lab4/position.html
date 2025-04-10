@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Копылов Владимир Вячеславович. Лабораторная работа 4</title>
+    <title>Копылов Владимир Вячеславович. Позиционирование</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
@@ -31,16 +31,19 @@
             position: relative;
             z-index: 3;
         }
-
-        .postion-absolute:hover {
-            width: 350px;
-            height: 70px;
-            background-color: red;
-            box-shadow: 3px 3px 3px black;
-        }
         .postion-absolute {
             position: absolute;
-            right: 3px;
+            width: 350px;
+            height: 70px;
+            left: 400px;
+        }
+        .postion-absolute:hover {
+            position: absolute;
+            width: 400px;
+            height: 90px;
+            background-color: red;
+            box-shadow: 3px 3px 3px black;
+            z-index: 4;
         }
     </style>
 </head>
