@@ -31,6 +31,46 @@
                 let b = parseInt(inputB.value);
                 let result = a * b;
                 alert("Перемножение " + a + " и " + b + " равна: " + result)
+                
+            }
+            function showDiv() {
+                let inputA = document.getElementById("namberA");
+                let inputB = document.getElementById("namberB");
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                if (b == 0) {
+                    alert("На ноль делить нельзя!")
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = "red";
+                    inputB.style.borderColor = "red";
+                    return;
+                }
+                
+                if (isNaN(a)) {
+                    alert("Введите числовое значение в первое поле");
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = "red";
+                    inputA.style.borderColor = "red";
+                return;
+                }
+                
+                if (isNaN(b)) {
+                    alert("Введите числовое значение во второе поле");
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = "red";
+                    inputB.style.borderColor = "red";
+                return;
+                }
+                inputB.style.color = "";
+                inputB.style.borderColor = "";
+                inputA.style.color = "";
+                inputA.style.borderColor = "";
+                let result = a / b;
+                alert("Отношение " + a + " и " + b + " равна: " + result)
+                
             }
             function showAutor() {
                 let author = "Автор страницы: \nКопылов Владимир Вячеславович";
@@ -72,10 +112,8 @@
             <div class="messege" onclick="showAutor()">Узнать, кто автор страницы</div>
             <div class="messege" onclick="showmultiplication()"> "Найти произведение"</div>
             <div class="messege" onclick="showdifference()">"Найти разность чисел"</div>
-
-            "Найти разность чисел", "Найти произведение".
+            <div class="messege" onclick="showDiv()">"Найти отношение чисел"</div>
         </main>
-ы
         <footer ondblclick="devis()">
             &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
         </footer>
