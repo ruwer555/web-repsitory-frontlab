@@ -121,6 +121,17 @@
                 let devis = "Сегодня в завтрашний день не все могут смотреть. \nВернее, смотреть могут не только лишь все. \nМало кто может это делать";
                 alert(devis);
             }
+            function changeOutput(buttonNum, backColor, textColor, borderRadius, width, border, px, center) {
+                let output = document.getElementById("output");
+                output.innerHTML = "Нажата кнопка " + buttonNum;
+                output.style.backgroundColor = backColor;
+                output.style.color = textColor;
+                output.style.borderRadius = borderRadius;
+                output.style.width = width;
+                output.style.borderWidth = px;
+                output.style.border = border;
+                output.style.textAlign = center;
+            }
         </script>
         <style>
             .messege {
@@ -133,12 +144,17 @@
                 display: inline-block;
                 padding: 4px;
             }
-        header {
-            cursor: pointer;
-        }
-        footer {
-            cursor: pointer;
-        }
+            #output {
+                border: 1px solid;
+                width: 300px;
+                height: 40px;
+            }
+            header {
+                cursor: pointer;
+            }
+            footer {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
@@ -155,6 +171,13 @@
             <div class="messege" onclick="showdifference()">"Найти разность чисел"</div>
             <div class="messege" onclick="showDiv()">"Найти отношение чисел"</div>
             <div class="messege" onclick="showdegree()">"Найти степень числа"</div>
+        <div>
+            <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', '5px', '100px', 'dashed', '2px', 'center')">
+            <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime', '15px', '200px', 'dotted', '4px', 'center')">
+            <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'orange', 'blue', '25px', '300px', 'ridge', '6px', 'center')">
+            <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'peach', 'black', '35px', '400px', 'solid ', '10px', 'center')">
+            <div id="output"></div>
+        </div>
         </main>
         <footer ondblclick="devis()">
             &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
