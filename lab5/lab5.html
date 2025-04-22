@@ -15,8 +15,12 @@
                 alert("Сумма " + a + " и " + b + " равна: " + result)
             }
             function showAutor() {
-                let author = "Автор страницы: Копылов Владимир Вячеславович";
+                let author = "Автор страницы: \nКопылов Владимир Вячеславович";
                 alert(author);
+            }
+            function devis() {
+                let devis = "Сегодня в завтрашний день не все могут смотреть. \nВернее, смотреть могут не только лишь все. \nМало кто может это делать";
+                alert(devis);
             }
         </script>
         <style>
@@ -30,10 +34,16 @@
                 display: inline-block;
                 padding: 4px;
             }
+        header {
+            cursor: pointer;
+        }
+        footer {
+            cursor: pointer;
+        }
         </style>
     </head>
     <body>
-        <header>
+        <header onclick="showAutor()">
             НГТУ, ФБ, Лабораторная работа 5
         </header>
 
@@ -42,7 +52,7 @@
             <div class="messege" onclick="showAutor()">Узнать, кто автор страницы</div>
         </main>
 
-        <footer>
+        <footer ondblclick="devis()">
             &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
         </footer>
     </body>
