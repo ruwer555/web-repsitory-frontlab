@@ -7,17 +7,43 @@
     <link rel="stylesheet" href="../main.css">
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
-</head>
-<body>
-    <header onclick="showAuthor()">
-        НГТУ, ФБ, Лабораторная работа 5
-    </header>
-    <main>
-    </main> 
+        <script>
+            function showSum() {
+                let a = 5154;
+                let b = 7891;
+                let result = a + b;
+                alert("Сумма " + a + " и " + b + " равна: " + result)
+            }
+            function showAutor() {
+                let author = "Автор страницы: Копылов Владимир Вячеславович";
+                alert(author);
+            }
+        </script>
+        <style>
+            .messege {
+                cursor: pointer;
+                weight: 100px;
+                height: 30px;
+                background-color: lightgreen;
+                border: 2px dashed orange;
+                border-radius: 15px;
+                display: inline-block;
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
 
-    <footer>
-        <hr>
-        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
-    </footer>
-</body>
+        <main>
+            <div class="messege" onclick="showSum()">Сколько будет 5154+7891?</div>
+            <div class="messege" onclick="showAutor()">Узнать, кто автор страницы</div>
+        </main>
+
+        <footer>
+            &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
 </html>
