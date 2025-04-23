@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Лабораторная работа 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .dis {
+            background-color: white;
+            margin: 2rem auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #444;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #count {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.2rem;
+        }
+    </style>
+    <script>
+        function showSum() {
+            let inputA = document.getElementById("namberA");
+            let inputB = document.getElementById("namberB");
+            let inputC = document.getElementById("namberC");
+            let inputD = document.getElementById("namberD");
+
+            let a = parseInt(inputA.value) || 0;
+            let b = parseInt(inputB.value) || 0;
+            let c = parseInt(inputC.value) || 0;
+            let d = parseInt(inputD.value) || 0;
+
+
+            let resulta = Math.abs(a) * 100;
+            let resultb = Math.abs(b) * 80;
+            let resultc = Math.abs(c) * 150;
+            let resultd = Math.abs(d) * 300;
+
+            let count = resulta + resultb + resultc + resultd;
+            document.getElementById('count').textContent = `Итог: ${count} р`;
+        }
+
+        function clearSum() {
+            document.getElementById('namberA').value = '';
+            document.getElementById('namberB').value = '';
+            document.getElementById('namberC').value = '';
+            document.getElementById('namberD').value = '';
+            document.getElementById('count').textContent = 'Итог: 0 р';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <div class="dis">
+            <h1>Корзина товаров</h1>
+            Яблоки (100р/шт): <input type="number" min = "0" id="namberA" placeholder="Сколько яблок вы хотите?" min="0"><br>
+            Груши (80р/шт): <input type="number" min = "0" id="namberB" placeholder="Сколько груш вы хотите?" min="0"><br>
+            Апельсины (150р/шт): <input type="number" min = "0" id="namberC" placeholder="Сколько апельсинов вы хотите?" min="0"><br>
+            Дыни (300р/шт): <input type="number" min = "0" id="namberD" placeholder="Сколько дынь вы хотите?" min="0"><br>
+
+            <button onclick="showSum()">Рассчитать</button>
+            <button onclick="clearSum()">Очистить корзину</button>
+            <div id="count">Итог: 0 р</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>

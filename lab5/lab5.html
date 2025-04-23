@@ -7,180 +7,25 @@
     <link rel="stylesheet" href="../main.css">
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
-        <script>
-            function showSum() {
-                let inputA = document.getElementById("namberA");
-                let inputB = document.getElementById("namberB");
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let result = a + b;
-                alert("Сумма " + a + " и " + b + " равна: " + result)
-            }
-            function showdifference() {
-                let inputA = document.getElementById("namberA");
-                let inputB = document.getElementById("namberB");
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let result = a - b;
-                alert("Разность " + a + " и " + b + " равна: " + result)
-            }
-            function showmultiplication() {
-                let inputA = document.getElementById("namberA");
-                let inputB = document.getElementById("namberB");
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let result = a * b;
-                alert("Перемножение " + a + " и " + b + " равна: " + result)
-                
-            }
-            function showDiv() {
-                let inputA = document.getElementById("namberA");
-                let inputB = document.getElementById("namberB");
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                if (b == 0) {
-                    alert("На ноль делить нельзя!")
-                    inputB.focus();
-                    inputB.select();
-                    inputB.style.color = "red";
-                    inputB.style.borderColor = "red";
-                    return;
-                }
-                
-                if (isNaN(a)) {
-                    alert("Введите числовое значение в первое поле");
-                    inputA.focus();
-                    inputA.select();
-                    inputA.style.color = "red";
-                    inputA.style.borderColor = "red";
-                return;
-                }
-                
-                if (isNaN(b)) {
-                    alert("Введите числовое значение во второе поле");
-                    inputB.focus();
-                    inputB.select();
-                    inputB.style.color = "red";
-                    inputB.style.borderColor = "red";
-                return;
-                }
-                inputB.style.color = "";
-                inputB.style.borderColor = "";
-                inputA.style.color = "";
-                inputA.style.borderColor = "";
-                let result = a / b;
-                alert("Отношение " + a + " и " + b + " равна: " + result)
-                
-            }
-            function showdegree() {
-                let inputA = document.getElementById("namberA");
-                let inputB = document.getElementById("namberB");
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                if (b == 0 && a == 0) {
-                    alert("Оба поля не могут содержать 0!")
-                    inputA.focus();
-                    inputA.select();
-                    inputB.style.color = "red";
-                    inputB.style.borderColor = "red";
-                    inputA.style.color = "red";
-                    inputA.style.borderColor = "red";
-                    return;
-                }
-                
-                if (isNaN(a)) {
-                    alert("Введите числовое значение в первое поле");
-                    inputA.focus();
-                    inputA.select();
-                    inputA.style.color = "red";
-                    inputA.style.borderColor = "red";
-                return;
-                }
-                
-                if (isNaN(b)) {
-                    alert("Введите числовое значение во второе поле");
-                    inputB.focus();
-                    inputB.select();
-                    inputB.style.color = "red";
-                    inputB.style.borderColor = "red";
-                return;
-                }
-                inputB.style.color = "";
-                inputB.style.borderColor = "";
-                inputA.style.color = "";
-                inputA.style.borderColor = "";
-                let result = a ** b;
-                alert("Число " + a + " в степени " + b + " равна: " + result)
-                
-            }
-            function showAutor() {
-                let author = "Автор страницы: \nКопылов Владимир Вячеславович";
-                alert(author);
-            }
-            function devis() {
-                let devis = "Сегодня в завтрашний день не все могут смотреть. \nВернее, смотреть могут не только лишь все. \nМало кто может это делать";
-                alert(devis);
-            }
-            function changeOutput(buttonNum, backColor, textColor, borderRadius, width, border, px, center) {
-                let output = document.getElementById("output");
-                output.innerHTML = "Нажата кнопка " + buttonNum;
-                output.style.backgroundColor = backColor;
-                output.style.color = textColor;
-                output.style.borderRadius = borderRadius;
-                output.style.width = width;
-                output.style.borderWidth = px;
-                output.style.border = border;
-                output.style.textAlign = center;
-            }
-        </script>
-        <style>
-            .messege {
-                cursor: pointer;
-                weight: 100px;
-                height: 30px;
-                background-color: lightgreen;
-                border: 2px dashed orange;
-                border-radius: 15px;
-                display: inline-block;
-                padding: 4px;
-            }
-            #output {
-                border: 1px solid;
-                width: 300px;
-                height: 40px;
-            }
-            header {
-                cursor: pointer;
-            }
-            footer {
-                cursor: pointer;
-            }
-        </style>
-    </head>
-    <body>
-        <header onclick="showAutor()">
-            НГТУ, ФБ, Лабораторная работа 5
-        </header>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+    </header>
+    <main>
+        <ol>
+            <li>
+                <a href="arithmetic.html">Арифметика</a>
+            </li>
+            <li>
+                <a href="cart.html">Магазин</a>
+            </li>
+        </ol>
+    </main> 
 
-        <main>
-            Первое число: <input type="number" value="5154" id="namberA"></label><br>
-            Второе число: <input type="number" value="7891" id="namberB"></label><br>
-            <div class="messege" onclick="showSum()">Найти сумму чисел</div>
-            <div class="messege" onclick="showAutor()">Узнать, кто автор страницы</div>
-            <div class="messege" onclick="showmultiplication()"> "Найти произведение"</div>
-            <div class="messege" onclick="showdifference()">"Найти разность чисел"</div>
-            <div class="messege" onclick="showDiv()">"Найти отношение чисел"</div>
-            <div class="messege" onclick="showdegree()">"Найти степень числа"</div>
-        <div>
-            <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', '5px', '100px', 'dashed', '2px', 'center')">
-            <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime', '15px', '200px', 'dotted', '4px', 'center')">
-            <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'orange', 'blue', '25px', '300px', 'ridge', '6px', 'center')">
-            <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'peach', 'black', '35px', '400px', 'solid ', '10px', 'center')">
-            <div id="output"></div>
-        </div>
-        </main>
-        <footer ondblclick="devis()">
-            &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
-        </footer>
-    </body>
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
 </html>
