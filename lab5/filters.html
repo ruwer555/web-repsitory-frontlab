@@ -38,6 +38,16 @@
             document.getElementById('invertOutput').innerText = value;
             document.getElementById('Image').style.filter = 'invert(' + value + ')';
         }
+        function saturateChange() {
+            let value = document.getElementById('saturateValue').value + '%';
+            document.getElementById('saturateOutput').innerText = value;
+            document.getElementById('Image').style.filter = 'saturate(' + value + ')';
+        }
+        function sepiaChange() {
+            let value = document.getElementById('sepiaValue').value + '%';
+            document.getElementById('sepiaOutput').innerText = value;
+            document.getElementById('Image').style.filter = 'sepia(' + value + ')';
+        }
     </script>
 </head>
 <body>
@@ -75,12 +85,17 @@
             <input type="range" min="0" max="100" value="0" onchange="invertChange()" id="invertValue">
             <span id="invertOutput"></span>
         </div>
-        <div><img src="good.jpg" width="70%" height="70%"  id="Image"></div>
         <div>
             Фильтр saturate:
             <input type="range" min="0" max="100" value="0" onchange="saturateChange()" id="saturateValue">
             <span id="saturateOutput"></span>
         </div>
+        <div>
+            Фильтр sepia:
+            <input type="range" min="0" max="100" value="0" onchange="sepiaChange()" id="sepiaValue">
+            <span id="sepiaOutput"></span>
+        </div>
+        <div><img src="good.jpg" width="70%" height="70%"  id="Image"></div>
     </main> 
 
     <footer>
