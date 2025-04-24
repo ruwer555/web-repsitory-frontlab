@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Круги</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        main {
+            position: relative;
+            min-height: 400px;
+        }
+
+        button {
+            font-size: 16pt;
+            font-family: 'Verdana';
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.5s;
+            cursor: pointer
+        }
+
+        .circle.hidden {
+            opacity: 0;
+        }
+
+        .circle:nth-child(1) { top: 15px; left: 50%; }
+        .circle:nth-child(2) { top: 45px; left: 25%; }
+        .circle:nth-child(3) { top: 75px; left: 68%; }
+        .circle:nth-child(4) { top: 105px; left: 43%; }
+        .circle:nth-child(5) { top: 135pt; left: 77%; }
+        .circle:nth-child(6) { top: 165pt; left: 12%; }
+        .circle:nth-child(7) { top: 195pt; left: 40%; }
+        .circle:nth-child(8) { top: 250px; left: 60%; }
+        .circle:nth-child(9) { top: 300px; left: 5%; }
+        .circle:nth-child(10) { top: 320px; left: 95%; }
+    </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div class="circle" style="background-color: #2bdd2e;">1</div>
+            <div class="circle" style="background-color: #e27ed0;">2</div>
+            <div class="circle" style="background-color: #7483f3;">3</div>
+            <div class="circle" style="background-color: #efbf11;">4</div>
+            <div class="circle" style="background-color: #10e0f7;">5</div>
+            <div class="circle" style="background-color: #dc0f0f;">6</div>
+            <div class="circle" style="background-color: #f1f465;">7</div>
+            <div class="circle" style="background-color: #9e0e64;">8</div>
+            <div class="circle" style="background-color: #3c9391;">9</div>
+            <div class="circle" style="background-color: rgb(87, 34, 161);">10</div>
+            <button id="resetCircle">Новые круги</button>
+        </main>
+
+        <footer>
+            <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+    </body>
+    <script>
+        let circles = document.querySelectorAll('.circle');
+
+        circles.forEach(circle => {
+            circle.addEventListener('click', () => {
+                circle.classList.add('hidden');
+            });
+        });
+
+        document.getElementById('resetCircle').addEventListener('click', () => {
+            circles.forEach(circle => {
+                circle.classList.remove('hidden');
+            });
+        });
+    </script>
+</html>
