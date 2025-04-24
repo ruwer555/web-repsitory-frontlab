@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Копылов Владимир Вячеславович. Событие</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            #block {
+                width: 400px;
+                height: 300px;
+                font-family: 'Verdana';
+                padding: 10px;
+                font-size: 20px;
+            }
+          </style>
+          <script>
+            function showCoords() {
+                let x = this.event.x;
+                let y = this.event.y;
+                let div = document.getElementById('block');
+                let ctrlText = '';
+                let altText = '';
+                let shiftText = '';
+                div.style.color = 'black';
+                div.style.borderColor = 'red';
+                div.style.backgroundColor = 'white';
+
+                if (this.event.ctrlKey) {
+                    div.style.color = 'blue';
+                    div.style.borderColor = 'black';
+                    div.style.backgroundColor = 'purple';
+                    ctrlText = '<br>Нажата клавиша <b>Ctrl</b>';
+                }
+
+                if (this.event.altKey) {
+                    div.style.color = 'green';
+                    div.style.borderColor = 'white';
+                    div.style.backgroundColor = 'darkblue';
+                    altText = '<br>Нажата клавиша <b>Alt</b>';
+                }
+
+                if (this.event.shiftKey) {
+                    div.style.color = 'red';
+                    div.style.borderColor = 'yellow';
+                    div.style.backgroundColor = 'lightgreen';
+                    shiftText = '<br>Нажата клавиша <b>Shift</b>';
+                }
+
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px' + ctrlText + altText + shiftText;
+            }
+          </script>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div id="block" onmousemove="showCoords()"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
