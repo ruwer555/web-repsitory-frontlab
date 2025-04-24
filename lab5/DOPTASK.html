@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Копылов Владимир Вячеславович. Событие</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            img {
+                width: 500px;
+                transition: 0.3s;
+                margin: 20px;
+            }
+            .info {
+                margin: 10px;
+                padding: 10px;
+                background: white;
+                border-radius: 5px;
+                width: 500px;
+            }
+            #filterInfo {
+                margin: 10px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="Image" src="good3.jpg">
+        <div id="filterInfo"></div>
+        <div class="info">
+            Управление фильтрами:<br>
+            Наведение мыши - размытие<br>
+            Shift - яркость<br>
+            ctrl - чёрно-белый режим<br>
+            Alt - контрастность
+        </div>
+    
+        <script>
+            const img = document.getElementById('Image');
+            const info = document.getElementById('filterInfo');
+    
+            img.addEventListener('mousemove', (e) => {
+                const width = img.offsetWidth;
+                const xPosition = e.offsetX;
+                const effectValue = (xPosition / width).toFixed(2);
+    
+                if(e.ctrlKey) { 
+                    const grayscale = effectValue * 100;
+                    img.style.filter = `grayscale(${grayscale}%)`;
+                    info.textContent = `Чёрно-белый: ${grayscale.toFixed(0)}%`;
+                }
+                else if(e.altKey) { 
+                    const contrast = 100 + (effectValue * 100);
+                    img.style.filter = `contrast(${contrast}%)`;
+                    info.textContent = `Контраст: ${contrast.toFixed(0)}%`;
+                }
+                else if(e.shiftKey) { 
+                    const brightness = 100 + (effectValue * 100);
+                    img.style.filter = `brightness(${brightness}%)`;
+                    info.textContent = `Яркость: ${brightness.toFixed(0)}%`;
+                }
+                else { 
+                    const blur = effectValue * 10;
+                    img.style.filter = `blur(${blur}px)`;
+                    info.textContent = `Размытие: ${blur.toFixed(1)}px`;
+                }
+            });
+    
+            img.addEventListener('mouseleave', () => {
+                img.style.filter = 'none';
+                info.textContent = '';
+            });
+        </script>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
