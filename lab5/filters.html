@@ -33,6 +33,11 @@
             document.getElementById('hueRotateOutput').innerText = value;
             document.getElementById('Image').style.filter = 'hue-rotate(' + value + ')';
         }
+        function invertChange() {
+            let value = document.getElementById('invertValue').value + '%';
+            document.getElementById('invertOutput').innerText = value;
+            document.getElementById('Image').style.filter = 'invert(' + value + ')';
+        }
     </script>
 </head>
 <body>
@@ -71,6 +76,11 @@
             <span id="invertOutput"></span>
         </div>
         <div><img src="good.jpg" width="70%" height="70%"  id="Image"></div>
+        <div>
+            Фильтр saturate:
+            <input type="range" min="0" max="100" value="0" onchange="saturateChange()" id="saturateValue">
+            <span id="saturateOutput"></span>
+        </div>
     </main> 
 
     <footer>
