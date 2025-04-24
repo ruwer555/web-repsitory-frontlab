@@ -23,6 +23,12 @@
             document.getElementById('contrastOutput').innerText = value;
             document.getElementById('Image').style.filter = 'contrast(' + value + ')';
         }
+        function grayscaleChange() {
+            let value = document.getElementById('grayscaleValue').value + '%';
+            document.getElementById('grayscaleOutput').innerText = value;
+            document.getElementById('Image').style.filter = 'grayscale(' + value + ')';
+        }
+        
     </script>
 </head>
 <body>
@@ -36,7 +42,7 @@
             <span id="blurOutput"></span>
         </div>
         <div>
-            Фильтр brightness:
+            Фильтр brightness:contrast
             <input type="range" min="0" max="100" value="0" onchange="brightnessChange()" id="brightnessValue">
             <span id="brightnessOutput"></span>
         </div>
@@ -44,10 +50,14 @@
             Фильтр contrast:
             <input type="range" min="0" max="100" value="0" onchange="contrastChange()" id="contrastValue">
             <span id="contrastOutput"></span>
-            <div><img src="good.jpg" width="70%" height="70%"  id="Image"></div>
         </div>
+        <div>
+            Фильтр grayscale:
+            <input type="range" min="0" max="100" value="0" onchange="grayscaleChange()" id="grayscaleValue">
+            <span id="grayscaleOutput"></span>
+        </div>
+        <div><img src="good.jpg" width="70%" height="70%"  id="Image"></div>
     </main> 
-
     <footer>
         <hr>
         &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
