@@ -7,17 +7,25 @@
     <link rel="stylesheet" href="../main.css">
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
-    <style>
-        
-    </style>
     <script>
         function showMultipleTable() {
+            let inputA = document.getElementById("namberA");
+            let inputB = document.getElementById("namberB");
+            let inputC = document.getElementById("namberC");
+            let a = parseInt(inputA.value) || 0;
+            let b = parseInt(inputB.value) || 0;
+            let c = parseInt(inputC.value) || 0;
             let tbl = document.getElementById('mtable');
             tbl.innerHTML = '<h1>Таблица умножения</h1';
-                for(i = 1; i <= 10; i++) {
-                    let s = `<div>${i} * 7 = ${i*7}</div>`;
+                for(i = b; i <= c; i++) {
+                    let s = `<div>${i} * ${a} = ${i*a}</div>`;
                     tbl.innerHTML +=s;
                 }
+        }
+        function clearSum() {
+            document.getElementById('namberA').value = '';
+            document.getElementById('namberB').value = '';
+            document.getElementById('namberC').value = '';
         }
     </script>
 </head>
@@ -27,8 +35,14 @@
     </header>
     <main>
         <div id="mtable"></div>
+            <hr>
+            Умножить на: <input type="number" min = "0" id="namberA" min="0"><br>
+            Начать с: <input type="number" min = "0" id="namberB" min="0"><br>
+            Закончить на: <input type="number" min = "0" id="namberC" min="0"><br>
+            <button onclick="showMultipleTable()">Рассчитать</button>
+            <button onclick="clearSum()">Очистить</button>
+        </div>
     </main> 
-
     <footer>
         <hr>
         &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
