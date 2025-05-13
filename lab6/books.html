@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Лабораторная работа 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script src="books.js"></script>
+    <style>
+        .book-card {
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .bestseller {
+            border: 2px solid #ffd700;
+            background-color: #fff9e6;
+        }
+
+        .out-of-stock {
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .out-of-stock::after {
+            content: "Нет в наличии";
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .price-tag {
+            color: #2ecc71;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+    <script>
+        function showBooks() {
+            const bookList = document.getElementById('bookList');
+            let html = '';
+            
+            for(let book of books) {
+                html += `
+                    <div class="book-card 
+                        ${book.bestseller ? 'bestseller' : ''} 
+                        ${!book.inStock ? 'out-of-stock' : ''}">
+                        <b>${book.author}.</b>
+                        <i>${book.name}.</i>
+                        &mdash; ${book.publicationYear}
+                        <span class="price-tag">${book.price} ₽</span>
+                    </div>
+                `;
+            }
+            bookList.innerHTML = html;
+        }
+    </script>
+</head>
+<body onload="showBooks()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+    <main>
+       <h1>Список книг</h1>
+       <div id="bookList"></div>
+    </main> 
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
