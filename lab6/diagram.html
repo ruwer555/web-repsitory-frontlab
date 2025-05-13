@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Лабораторная работа 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        
+        #diag {
+            border: 1px solid #000;
+            padding: 20px;
+            margin: 20px;
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            width: 300px;
+        }
+        .bar {
+            padding: 2px;
+            width: auto;
+            margin: 5px 0;
+            background-color: #ccc;
+        }
+    </style>
+    <script>
+        function showDiagramm() {
+            let data = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+            let bars = document.getElementsByClassName('bar');
+            let colors = ['red', 'blue', 'yellow', 'green', 'purple', 'orange', 'lightblue', 'black'];
+            const diagHeight = document.getElementById('diag').clientHeight;
+            const maxData = Math.max(...data);
+            const k = diagHeight / maxData * 0.9;
+
+            for(let i = 0; i < data.length; i++) {
+                bars[i].style.height = (data[i] * k) + 'px'; 
+                bars[i].style.backgroundColor = colors[i % colors.length]; 
+            }
+        }
+    </script>
+</head>
+
+<body onload="showDiagramm()"> 
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+    <main>
+        <div id="diag">
+            <div class="bar">10</div>
+            <div class="bar">20</div>
+            <div class="bar">30</div>
+            <div class="bar">40</div>
+            <div class="bar">50</div>
+            <div class="bar">60</div>
+            <div class="bar">70</div>
+            <div class="bar">80</div>
+            <div class="bar">90</div>
+            <div class="bar">100</div>
+        </div>
+    </main> 
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
