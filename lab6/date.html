@@ -14,9 +14,15 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        header {
+            transition: color 0.5s; 
+        }
     </style>
     <script src="date.js"></script>
     <script>
+        let colorTimerId; 
+        let dateTimerId;  
+
         function showDate() {
             let out = document.getElementById("current-date");
             let html = "";
@@ -33,6 +39,46 @@
             
             out.innerHTML = html;
         }
+
+        function changeColors() {
+            const header = document.getElementsByTagName("header")[0];
+            const rgb = `rgb(
+                ${Math.floor(Math.random() * 255)}, 
+                ${Math.floor(Math.random() * 255)}, 
+                ${Math.floor(Math.random() * 255)}
+            )`;
+            header.style.color = rgb;
+        }
+
+        
+        function startChangeColors() {
+            changeColors();
+            colorTimerId = setInterval(changeColors, 1000);
+            document.getElementById("start-btn").disabled = true;
+            document.getElementById("stop-btn").disabled = false;
+        }
+
+        function stopChangeColors() {
+            clearInterval(colorTimerId);
+            colorTimerId = null;
+            document.getElementById("start-btn").disabled = false;
+            document.getElementById("stop-btn").disabled = true;
+        }
+
+        
+        function startDateUpdate() {
+            showDate();
+            dateTimerId = setInterval(showDate, 1000);
+            document.getElementById("start-data").disabled = true;
+            document.getElementById("stop-data").disabled = false;
+        }
+
+        function stopDateUpdate() {
+            clearInterval(dateTimerId);
+            dateTimerId = null;
+            document.getElementById("start-data").disabled = false;
+            document.getElementById("stop-data").disabled = true;
+        }
     </script>
 </head>
 <body onload="showDate()">
@@ -42,6 +88,12 @@
     <main>
         <h1>Даты</h1>
         <div id="current-date"></div>
+        <div>
+            <button onclick="startChangeColors()" id="start-btn">Старт (цвет)</button>
+            <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп (цвет)</button>
+            <button onclick="startDateUpdate()" id="start-data">Обновлять время</button>
+            <button onclick="stopDateUpdate()" disabled id="stop-data">Остановить время</button>
+        </div>
     </main> 
 
     <footer>
