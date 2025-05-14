@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Копылов Владимир Вячеславович. Лабораторная работа 6</title>
+    <title>Копылов Владимир Вячеславович. Таблица умножения</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
@@ -12,15 +12,19 @@
             let inputA = document.getElementById("namberA");
             let inputB = document.getElementById("namberB");
             let inputC = document.getElementById("namberC");
+            let errortext = "";
             let a = parseInt(inputA.value) || 0;
             let b = parseInt(inputB.value) || 0;
             let c = parseInt(inputC.value) || 0;
             let tbl = document.getElementById('mtable');
             tbl.innerHTML = '<h1>Таблица умножения</h1';
-                for(i = b; i <= c; i++) {
-                    let s = `<div>${i} * ${a} = ${i*a}</div>`;
-                    tbl.innerHTML +=s;
-                }
+            if (b > c) {
+                tbl.innerHTML = "Начальное число больше чем конечное!";
+            }
+            for(i = b; i <= c; i++) {
+                let s = `<div>${i} * ${a} = ${i*a}</div>`;
+                tbl.innerHTML +=s;
+            }
         }
         function clearSum() {
             document.getElementById('namberA').value = '';
@@ -36,9 +40,9 @@
     <main>
         <div id="mtable"></div>
             <hr>
-            Умножить на: <input type="number" min = "0" id="namberA" min="0"><br>
-            Начать с: <input type="number" min = "0" id="namberB" min="0"><br>
-            Закончить на: <input type="number" min = "0" id="namberC" min="0"><br>
+            Умножить на: <input type="number" id="namberA"><br>
+            Начать с: <input type="number" id="namberB"><br>
+            Закончить на: <input type="number" id="namberC"><br>
             <button onclick="showMultipleTable()">Рассчитать</button>
             <button onclick="clearSum()">Очистить</button>
         </div>
