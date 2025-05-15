@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Даты</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script>
+        let temperatures = [];
+        let selectedDay = null;
+
+        function generateTemperatures() {
+            temperatures = [];
+            for (let i = 0; i < 30; i++) {
+                const min = Math.floor(Math.random() * 20 - 10);
+                const max = Math.floor(Math.random() * 20 + 10);
+                temperatures.push({ min, max });
+            }
+        }
+
+        function renderChart() {
+            const chart = document.getElementById('temperature-chart');
+            chart.innerHTML = '';
+            const maxValue = Math.max(...temperatures.map(t => t.max)) + 40;
+            temperatures.forEach((temp, index) => {
+                const day = document.createElement('div');
+                day.className = 'day';
+                day.innerHTML = `
+                    <div class="column">
+                        <div class="min-bar" 
+                             style="height: ${((temp.min + 30) / maxValue * 100)}%">
+                            ${temp.min}°
+                        </div>
+                        <div class="max-bar" 
+                             style="height: ${((temp.max - temp.min) / maxValue * 100)}%">
+                            ${temp.max}°
+                        </div>
+                    </div>
+                    <span>${index + 1}</span>
+                `;
+                chart.appendChild(day);
+            });
+        }
+
+        function highlightDay(dayNumber) {
+            if (selectedDay) {
+                selectedDay.classList.remove('highlight');
+            }
+            const days = document.getElementsByClassName('day');
+            if (dayNumber >= 1 && dayNumber <= 30) {
+                selectedDay = days[dayNumber - 1];
+                selectedDay.classList.add('highlight');
+                document.getElementById('temp-info').textContent = 
+                    `День ${dayNumber}: мин ${temperatures[dayNumber - 1].min}°C, макс ${temperatures[dayNumber - 1].max}°C`;
+            } else {
+                document.getElementById('temp-info').textContent = 'Неверный номер дня';
+            }
+        }
+
+        window.onload = () => {
+            generateTemperatures();
+            renderChart();
+        };
+    </script>
+    <style>
+        .temperature-container {
+            padding: 20px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        #temperature-chart {
+            display: flex;
+            justify-content: space-between;
+            height: 400px;
+            align-items: flex-end;
+            margin: 20px 0;
+            border-bottom: 2px solid #666;
+        }
+        .day {
+            width: 3%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+        .column {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .min-bar {
+            background: #4CAF50;
+            transition: all 0.3s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+        }
+        .max-bar {
+            background: #FF5722;
+            transition: all 0.3s;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+        }
+        .highlight .min-bar,
+        .highlight .max-bar {
+            filter: brightness(150%);
+            box-shadow: 0 0 5px gold;
+        }
+        #day-input {
+            padding: 8px;
+            width: 200px;
+            margin: 15px 0;
+            border: 2px solid #4CAF50;
+            border-radius: 4px;
+        }
+        #temp-info {
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Температуры за месяц</h1>
+    </header>
+    <main>
+        <div class="temperature-container">
+            <div id="temperature-chart"></div>
+            <input 
+                type="number" 
+                id="day-input" 
+                placeholder="Введите номер дня (1-30)"
+                min="1"
+                max="30"
+                onchange="highlightDay(parseInt(this.value))"
+            >
+            <div id="temp-info"></div>
+        </div>
+    </main>
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
