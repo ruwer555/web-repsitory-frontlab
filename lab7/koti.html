@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Котировки компании</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script src="koti-data.js"></script>
+    <script>
+        function showKoti() {
+            document.querySelector('button').style.display = 'none';
+            let table = document.getElementById('koti-table');
+            
+            table.innerHTML = '';
+
+            let thead = document.createElement('thead');
+            let trHead = document.createElement('tr');
+            
+            ['Дата', 'Цена акций', 'Разница'].forEach(text => {
+                let th = document.createElement('th');
+                th.innerText = text;
+                trHead.appendChild(th);
+            });
+            
+            thead.appendChild(trHead);
+            table.appendChild(thead);
+            
+            let tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+
+            let total = 0;
+            
+            for(let i = 0; i < dataValue.length; i++) {
+                let tr = document.createElement('tr');
+                
+                let tdDate = document.createElement('td');
+                tdDate.innerText = dataValue[i];
+                tr.appendChild(tdDate);
+                
+                let tdPrice = document.createElement('td');
+                tdPrice.innerText = value[i].toFixed(3);
+                tr.appendChild(tdPrice);
+                total += value[i];
+                
+                let tdDiff = document.createElement('td');
+                if(i > 0) {
+                    const diff = value[i] - value[i-1];
+                    tdDiff.innerText = diff.toFixed(3);
+                    
+                    if(diff > 0) {
+                        tdDiff.style.color = 'green';
+                    } else if(diff < 0) {
+                        tdDiff.style.color = 'red';
+                    }
+                } else {
+                    tdDiff.innerText = '-';
+                }
+                tr.appendChild(tdDiff);
+                
+                tbody.appendChild(tr);
+            }
+
+            const average = total / dataValue.length;
+            const min = Math.min(...value);
+            const max = Math.max(...value);
+
+            let trAvg = document.createElement('tr');
+            let tdAvg = document.createElement('td');
+            tdAvg.setAttribute('colspan', '3');
+            tdAvg.innerHTML = `<strong>Среднее значение: ${average.toFixed(3)}</strong>`;
+            trAvg.appendChild(tdAvg);
+            tbody.appendChild(trAvg);
+
+            let trMin = document.createElement('tr');
+            let tdMin = document.createElement('td');
+            tdMin.setAttribute('colspan', '3');
+            tdMin.innerHTML = `<strong>Минимальное значение: ${min.toFixed(3)}</strong>`;
+            trMin.appendChild(tdMin);
+            tbody.appendChild(trMin);
+
+            let trMax = document.createElement('tr');
+            let tdMax = document.createElement('td');
+            tdMax.setAttribute('colspan', '3');
+            tdMax.innerHTML = `<strong>Максимальное значение: ${max.toFixed(3)}</strong>`;
+            trMax.appendChild(tdMax);
+            tbody.appendChild(trMax);
+        }
+    </script>
+    <style>
+        #koti-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+        }
+        #koti-table th, #koti-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        #koti-table th {
+            background-color: #f2f2f2;
+        }
+        #detail {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <button onclick="showKoti()">Курс акций MMK</button>
+        <table id="koti-table"></table>
+        <div id="detail"></div>
+    </main> 
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
