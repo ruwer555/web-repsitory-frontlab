@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Курс доллара</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script src="dollar-data.js"></script>
+    <script>
+        function showExchange() {
+            document.querySelector('button').style.display = 'none';
+            let table = document.getElementById('dollar-table');
+            let thead = document.createElement('thead');
+            let trHead = document.createElement('tr');
+            let th = document.createElement('th');
+            th.innerText = 'Курс доллара';
+            trHead.appendChild(th);
+            thead.appendChild(trHead);
+            table.appendChild(thead);
+            
+            let tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+            
+            for(let i = 0; i < exchange.length; i++) {
+                let tr = document.createElement('tr');
+                let td = document.createElement('td');
+                td.innerText = exchange[i].toFixed(2);
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+            
+            let sum = 0;
+            for(let i = 0; i < exchange.length; i++) {
+                sum += exchange[i];
+            }
+            let average = sum / exchange.length;
+            let detail = document.getElementById('detail');
+            let avgText = document.createElement('p');
+            avgText.innerHTML = `<strong>Средний курс:</strong> ${average.toFixed(2)}`;
+            detail.appendChild(avgText);
+            
+            let trAvg = document.createElement('tr');
+            let tdAvg = document.createElement('td');
+            tdAvg.innerHTML = `<strong>Среднее: ${average.toFixed(4)}</strong>`;
+            trAvg.appendChild(tdAvg);
+            tbody.appendChild(trAvg);
+        }
+    </script>
+    <style>
+        #dollar-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 200px;
+        }
+        #dollar-table th, #dollar-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        #dollar-table th {
+            background-color: #f2f2f2;
+        }
+        #detail {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <button onclick="showExchange()">Показать курс доллара</button>
+        <table id="dollar-table"></table>
+        <div id="detail"></div>
+    </main> 
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
