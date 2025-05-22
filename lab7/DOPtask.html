@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копылов Владимир Вячеславович. Лабораторная работа 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        #info { 
+            margin-bottom: 20px; 
+        }
+        canvas { 
+            max-width: 800px; 
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relativehumidity_2m&current_weather=true&timezone=Asia%2FBangkok";
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            const time = data.hourly.time.slice(0, 24);
+            const temp = data.hourly.temperature_2m.slice(0, 24);
+            const humidity = data.hourly.relativehumidity_2m.slice(0, 24);
+            const nowTemp = data.current_weather.temperature;
+            const currentTime = data.current_weather.time.slice(0, 13);
+            const hourIndex = time.findIndex(t => t.startsWith(currentTime));
+            const nowHumidity = hourIndex !== -1 ? humidity[hourIndex] : "нет данных!";
+
+            document.getElementById("info").innerHTML = `
+            <strong>Текущая температура:</strong> ${nowTemp}°C<br>
+            <strong>Текущая влажность:</strong> ${nowHumidity}%
+            `;
+
+            new Chart(document.getElementById('chart'), {
+            type: 'bar',
+            data: {
+                labels: time.map(t => t.split('T')[1]),
+                datasets: [
+                {
+                    label: 'Температура, °C',
+                    data: temp,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                },
+                {
+                    label: 'Влажность, %',
+                    data: humidity,
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                }
+                ]}
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <h2>Гистограмма температуры (прогноз)</h2>
+        <div id="info"></div>
+        <canvas id="chart"></canvas>
+    </main> 
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
