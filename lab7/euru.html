@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Копылов Владимир Вячеславович. Курс евро</title>
+  <link rel="stylesheet" href="../main.css" />
+  <link rel="icon" href="../favicon-16x16.png">
+  <link rel="icon" href="../favicon-32x32.png">
+  <style>
+    button {
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #0077cc;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #005fa3;
+        transform: scale(1.05);
+    }
+
+    button:active {
+        background-color: #004d86;
+        transform: scale(0.98);
+    }
+    #output {
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #0077cc;
+        border-radius: 10px;
+        width: 80%;
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+    }
+    #output h2 {
+        color: #0077cc;
+    }
+    .delta {
+        font-weight: bold;
+    }
+  </style>
+  <script>
+    function getEuroExchangeRate() {
+      const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+      fetch(url)
+        .then(response => response.json())
+        .then(json => {
+          const current = json.Valute.EUR.Value;
+          const previous = json.Valute.EUR.Previous;
+          const date = new Date(json.Date).toLocaleDateString();
+          const diff = (current - previous).toFixed(4);
+          const direction = diff > 0 ? "вырос" : diff < 0 ? "упал" : "не изменился";
+          const sign = diff > 0 ? "+" : "";
+
+          document.getElementById("output").innerHTML = `
+            <h2>Курс евро на ${date}</h2>
+            <p>Текущий курс: <strong>${current.toFixed(2)} ₽</strong></p>
+            <p>Курс за предыдущую дату: <strong>${previous.toFixed(2)} ₽</strong></p>
+            <p class="delta">Разница: <strong>${sign}${diff}</strong> — курс ${direction}.</p>
+            <p><small>Источник: <a href="https://www.cbr-xml-daily.ru/" target="_blank">ЦБ РФ (www.cbr-xml-daily.ru)</a></small></p>
+          `;
+        })
+    }
+  </script>
+</head>
+<body>
+  <header>
+    НГТУ, ФБ, Лабораторная работа 7
+  </header>
+  <main>
+    <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+    <div id="output"></div>
+  </main>
+
+  <footer>
+    <hr />
+    &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+  </footer>
+</body>
+</html>
