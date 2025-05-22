@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Копылов Владимир Вячеславович. Прогноз погоды</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        body {
+            font-family: Arial; 
+        }
+        #result {
+            border: 2px solid #0088cc; 
+            padding: 20px; 
+            margin-top: 20px; 
+            width: 60%; 
+            background-color: #f0f8ff; 
+        }
+    </style>
+    <script>
+        function getWeather() {
+            const url = "https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok";
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const hours = data.hourly.time;
+                const temps = data.hourly.temperature_2m;
+                const targetHours = ["08:00", "12:00", "20:00"];
+                const today = new Date().toISOString().slice(0, 10);
+                const result = targetHours.map(time => {
+
+                const fullTime = today + "T" + time;
+                const index = hours.indexOf(fullTime);
+                return index >= 0 ? `${time} — ${temps[index]}°C` : `${time} — нет данных`;
+            });
+            document.getElementById("result").innerHTML = `
+                <h3>Температура сегодня:</h3>
+                <ul>${result.map(r => `<li>${r}</li>`).join('')}</ul>
+            `;
+            })
+        }
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <h1>Погода в Новосибирске</h1>
+        <button onclick="getWeather()">Показать температуру</button>
+        <div id="result"></div>
+    </main> 
+
+    <footer>
+        <hr>
+        &copy; Копылов Владимир, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
