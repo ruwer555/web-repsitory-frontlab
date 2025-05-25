@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс валют — АЭСК</title>
+    <link rel="stylesheet" href="../RGZmain.css">
+    <link rel="icon" href="RGZfavi.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="top-bar">
+    <div class="logo">
+        <a href="RGZmain.html"><img src="RGZLOGO.jpg" width="50%"></a>
+    </div>
+</header>
+
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="RGZmain.html">О компании</a></li>
+            <li><a href="RGZnews.html">Новости</a></li>
+            <li><a href="RGZcurrency.html" class="active">Курс валют</a></li>
+            <li><a href="RGZcontacts.html">Контакты</a></li>
+            <li><a href="RGZvideo.html">Видео</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="content">
+    <h1>Курс валют (RUB ↔ EUR)</h1>
+    <section>
+        <label>Сумма в рублях:
+            <input type="number" id="rub" oninput="convert('RUB')">
+        </label>
+        <label>Сумма в евро:
+            <input type="number" id="eur" oninput="convert('EUR')">
+        </label>
+        <p>Курс EUR: <span id="rate">Загрузка...</span></p>
+    </section>
+
+    <canvas id="chart" width="600" height="300"></canvas>
+    <p id="info" style="font-weight: bold; font-size: 18px; margin-top: 10px;"></p>
+</main>
+
+<script>
+    let rate = 0;
+    async function loadRate() {
+        const data = await fetch("https://www.cbr-xml-daily.ru/daily_json.js").then(res => res.json());
+        rate = data.Valute.EUR.Value;
+        document.getElementById("rate").textContent = rate.toFixed(2);
+    }
+
+    function convert(from) {
+        const rub = document.getElementById("rub");
+        const eur = document.getElementById("eur");
+        if (!rate) return;
+        if (from === "RUB") eur.value = (rub.value / rate).toFixed(2);
+        else rub.value = (eur.value * rate).toFixed(2);
+    }
+
+    async function loadChart() {
+        const labels = [
+            "2024-04-01", "2024-04-02", "2024-04-03", "2024-04-04", "2024-04-05",
+            "2024-04-06", "2024-04-07", "2024-04-08", "2024-04-09", "2024-04-10",
+            "2024-04-11", "2024-04-12", "2024-04-13", "2024-04-14", "2024-04-15",
+            "2024-04-16", "2024-04-17", "2024-04-18", "2024-04-19", "2024-04-20",
+            "2024-04-21", "2024-04-22", "2024-04-23", "2024-04-24", "2024-04-25",
+            "2024-04-26", "2024-04-27", "2024-04-28", "2024-04-29", "2024-04-30"
+        ];
+
+        const values = [
+            95.15, 95.18, 95.12, 95.20, 95.10,
+            95.05, 95.08, 95.00, 95.25, 95.30,
+            95.35, 95.28, 95.22, 95.15, 95.17,
+            95.19, 95.23, 95.20, 95.10, 95.12,
+            95.18, 95.16, 95.14, 95.19, 95.21,
+            95.25, 95.29, 95.26, 95.23, 95.20
+        ];
+
+        const info = document.getElementById("info");
+
+        new Chart(document.getElementById("chart").getContext("2d"), {
+            type: "bar",
+            data: {
+                labels,
+                datasets: [{
+                    label: "Курс EUR",
+                    data: values,
+                    backgroundColor: "#f26522",
+                    hoverBackgroundColor: "#ff8800",
+                    borderColor: "#003366",
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                onClick: (_, elements) => {
+                    if (elements.length) {
+                        const i = elements[0].index;
+                        info.textContent = `Дата: ${labels[i]} — Курс: ${values[i]} руб.`;
+                    }
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => `Курс: ${ctx.raw} руб.`
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    }
+
+    loadRate();
+    loadChart();
+</script>
+</body>
+</html>

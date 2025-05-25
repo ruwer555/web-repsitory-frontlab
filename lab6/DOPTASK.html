@@ -8,23 +8,22 @@
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
     <script>
-        let temperatures = [];
         let selectedDay = null;
 
-        function generateTemperatures() {
-            temperatures = [];
-            for (let i = 0; i < 30; i++) {
-                const min = Math.floor(Math.random() * 20 - 10);
-                const max = Math.floor(Math.random() * 20 + 10);
-                temperatures.push({ min, max });
-            }
-        }
+        const values = [
+        95.15, 95.18, 95.12, 95.20, 95.10,
+        95.05, 95.08, 95.00, 95.25, 95.30,
+        95.35, 95.28, 95.22, 95.15, 95.17,
+        95.19, 95.23, 95.20, 95.10, 95.12,
+        95.18, 95.16, 95.14, 95.19, 95.21,
+        95.25, 95.29, 95.26, 95.23, 95.20
+    ];
 
         function renderChart() {
             const chart = document.getElementById('temperature-chart');
             chart.innerHTML = '';
-            const maxValue = Math.max(...temperatures.map(t => t.max)) + 40;
-            temperatures.forEach((temp, index) => {
+            const maxValue = Math.max(...values.map(t => t.max)) + 40;
+            values.forEach((temp, index) => {
                 const day = document.createElement('div');
                 day.className = 'day';
                 day.innerHTML = `
@@ -53,7 +52,7 @@
                 selectedDay = days[dayNumber - 1];
                 selectedDay.classList.add('highlight');
                 document.getElementById('temp-info').textContent = 
-                    `День ${dayNumber}: мин ${temperatures[dayNumber - 1].min}°C, макс ${temperatures[dayNumber - 1].max}°C`;
+                    `День ${dayNumber}: мин ${values[dayNumber - 1].min}°C, макс ${values[dayNumber - 1].max}°C`;
             } else {
                 document.getElementById('temp-info').textContent = 'Неверный номер дня';
             }
