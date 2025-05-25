@@ -15,16 +15,27 @@
     </header>
     <main>
         <div id="app">
-            <h1 :title="messagerus">{{ message }}</h1>
-        </div>
+            <h1 :title="messageRus">{{ message }}</h1>
+            <p>Счётчик{{ counter }}</p>
+            <button @click="incCounter">++</button>
+            <button @click="decCounter">--</button>
     </main> 
     <script>
         Vue.createApp({
             data() {
                 return {
                     message: 'Hello!',
-                    messagerus: 'Привет',
+                    messageRus: 'Привет!',
+                    counter: 1,
                 }
+            },
+            methods: {
+                incCounter() {
+                    this.counter++;
+                },
+                decCounter() {
+                    this.counter--;
+                },
             }
         }).mount('#app');
     </script>
